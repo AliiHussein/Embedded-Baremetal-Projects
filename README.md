@@ -1,5 +1,5 @@
 # Embedded-Projects
-Bare Metal embedded Projects that helps me learn and understand more about embedded systems.
+Bare Metal embedded Projects that helps me learn and understand more about embedded systems fundamentals.
 
 ## Introduction
 * Every project in this repo has its own "README" 
