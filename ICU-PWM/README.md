@@ -8,5 +8,5 @@ In this project I was capturing the pulse of the PWM signal (T_on) using the ICU
 * ICU
 
 ## Demo
-<p align="center"><img src="gifs/ICU_Period"\></p>
-<p align="center"><img src="gifs/ICU_Period1"\></p>
+<p align="center"><img src="gifs/ICU_Period.gif"\></p>
+<p align="center"><img src="gifs/ICU_Period1.gif"\></p>
