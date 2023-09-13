@@ -15,7 +15,7 @@
 uint8_t get_input_from_user(void);
 int32_t get_calc_value(uint32_t a, uint8_t c, uint32_t b);
 
-#define max_digits 3
+#define max_digits 4
 #define DEBUG1 1
 
 int main(void)
@@ -24,10 +24,11 @@ int main(void)
 	LCD_init();
 	KEYPAD_init();
 	
-	uint8_t first_arr[max_digits], second_arr[max_digits];
+	uint32_t first_arr[max_digits], second_arr[max_digits];
 	uint8_t size1 = 0, size2 = 0, operator = 0;
 	uint32_t first_num = 0, second_num =0;
-		
+	uint32_t power = 1;
+	
     while (1) 
     {
 		
@@ -44,14 +45,14 @@ int main(void)
 			}
 		}
 		
-		LCD_write_command(1);
 		// calculate the first number
 		for(int i = 0 ; i < size1; i++){
-			first_num += first_arr[size1-1-i] * pow(10, i);
-			LCD_write_number(first_num);
-			LCD_write_string("->");
+
+			first_num += first_arr[size1-1-i] * power;
+			power *= 10;
 
 		}
+		power = 1;
 
 		
 		if(size1 == max_digits){
@@ -59,8 +60,16 @@ int main(void)
 		}
 		
 		// Operator
+		chooseOp:
 		if((key == '+') || (key == '-') || (key == '*') || (key == '/')){
 			operator = key;
+		}
+		else{
+			LCD_write_command(0x10);
+			LCD_write_string(" ");
+			LCD_write_command(0x10);
+			key = get_input_from_user();
+			goto chooseOp;
 		}
 		
 		for(int i = 0; i < max_digits; i++){
@@ -76,16 +85,25 @@ int main(void)
 		
 		// calculate the second number
 		for(int i = 0 ; i < size2; i++){
-			second_num += second_arr[size2-1-i] * pow(10, i) ;
+			second_num += second_arr[size2-1-i] * power ;
+			power *= 10;
 		}
 		
 		
 		if(size2 == max_digits){
 			key = get_input_from_user();
 		}
-
+		
+		result:
 		if(key == '='){
 			LCD_write_number(get_calc_value(first_num,operator,second_num));
+		}
+		else{
+			LCD_write_command(0x10);
+			LCD_write_string(" ");
+			LCD_write_command(0x10);
+			key = get_input_from_user();
+			goto result;
 		}
 		
 		// reset variables
@@ -93,6 +111,7 @@ int main(void)
 		first_num = 0;
 		size2 = 0;
 		second_num = 0;
+		power = 1;
 		
 		while(KEYPAD_read() != 'c');
 		LCD_write_command(1);
