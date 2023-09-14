@@ -1,11 +1,14 @@
 # Calculator APP
-In this project I was capturing the pulse of the PWM signal (T_on) using the ICU.
+Calculator project that can work on variable number of digits
 
 ### Components/drivers Used  in this repo
 * Atmega32
 * LCD
-* PWM
-* ICU
+* Keypad
 
 ## Demo
-<p align="center"><img src="gifs/ICU_Period.gif"\></p>
+### Addition and division
+<p align="center"><img src="gifs/calc.gif"\></p>
+
+### Subtraction and Multiplication
+<p align="center"><img src="gifs/calc2.gif"\></p>

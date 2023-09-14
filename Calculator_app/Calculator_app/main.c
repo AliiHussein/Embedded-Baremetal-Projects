@@ -9,7 +9,6 @@
 #include "std_macros.h"
 #include "LCD.h"
 #include "KEYPAD.h"
-#include <math.h>
 
 // functions prototype
 uint8_t get_input_from_user(void);
