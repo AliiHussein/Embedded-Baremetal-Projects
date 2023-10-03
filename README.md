@@ -10,10 +10,14 @@ Bare Metal embedded Projects that helps me learn and understand more about embed
 * LCD
 * Keypad
 * LEDS
-* Timer0
+* Timers
 * 7-segment (6 digits)
 * LM35 (Temp Sensor)
 * DC Motors
 * ADC
 * PWM
 * UART
+* SPI
+* EEPROM
+* LEDs
+* ICU
