@@ -33,12 +33,6 @@ int main(void)
 	SETBIT(DDRD, 0);  // PD0 output
 	SETBIT(DDRD, 1);  // PD1 output
 	SETBIT(DDRD, 2);  // PD2 output
-	/*
-	// set bits to high
-	SETBIT(PORTD, 0);  // PD0 high
-	SETBIT(PORTD, 1);  // PD1 high
-	SETBIT(PORTD, 2);  // PD2 high
-	*/
 	
 	while(1){
 		lock_system();

@@ -25,15 +25,6 @@ int main(void)
 	SETBIT(DDRD, 6);  // PD6 output
 	SETBIT(DDRD, 7);  // PD7 output
 	
-	/*
-	// set bits to high
-	SETBIT(PORTD, 2);  // PD2 high
-	SETBIT(PORTD, 3);  // PD3 high
-	SETBIT(PORTD, 4);  // PD4 high
-	SETBIT(PORTD, 5);  // PD5 high
-	SETBIT(PORTD, 6);  // PD6 high
-	SETBIT(PORTD, 7);  // PD7 high
-	*/
 	LCD_write_command(1);
 	LCD_write_string("R1:0 R2:0 R3:0");
 	LCD_write_command(0xc0);

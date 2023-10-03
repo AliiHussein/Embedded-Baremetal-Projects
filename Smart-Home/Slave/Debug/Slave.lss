@@ -21,11 +21,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   8 .debug_frame  00000118  00000000  00000000  00002414  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003ef  00000000  00000000  0000252c  2**0
+  9 .debug_str    0000045a  00000000  00000000  0000252c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000005fa  00000000  00000000  0000291b  2**0
+ 10 .debug_loc    000005fa  00000000  00000000  00002986  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000070  00000000  00000000  00002f15  2**0
+ 11 .debug_ranges 00000070  00000000  00000000  00002f80  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -80,12 +80,6 @@ Disassembly of section .text:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000082 <LCD_write_char>:
-	}
-	while (i >= 0){
-		LCD_write_char(num_arr[i]);
-		i--;
-	}
-}
   82:	9b b3       	in	r25, 0x1b	; 27
   84:	94 60       	ori	r25, 0x04	; 4
   86:	9b bb       	out	0x1b, r25	; 27
@@ -363,29 +357,13 @@ Disassembly of section .text:
  2ae:	08 95       	ret
 
 000002b0 <LCD_write_string>:
-* Purpose      : Write a string (*txt) to lcd (valid only with 4-bit mode)
-*                (assume the end char of string is NULL (Ascii:'\0' - decimal:0 ))
-* Parameters   : *txt  (array of char to be written on lcd)
-* Return value : void
-*****************************************************************************/
-void LCD_write_string(uint8_t * str){
  2b0:	0f 93       	push	r16
  2b2:	1f 93       	push	r17
  2b4:	cf 93       	push	r28
  2b6:	8c 01       	movw	r16, r24
-	uint8_t i;
-	
-	for(i = 0; str[i] != 0; i++){
  2b8:	c0 e0       	ldi	r28, 0x00	; 0
  2ba:	03 c0       	rjmp	.+6      	; 0x2c2 <LCD_write_string+0x12>
-		LCD_write_char(str[i]);
  2bc:	0e 94 41 00 	call	0x82	; 0x82 <LCD_write_char>
-* Return value : void
-*****************************************************************************/
-void LCD_write_string(uint8_t * str){
-	uint8_t i;
-	
-	for(i = 0; str[i] != 0; i++){
  2c0:	cf 5f       	subi	r28, 0xFF	; 255
  2c2:	f8 01       	movw	r30, r16
  2c4:	ec 0f       	add	r30, r28
@@ -393,9 +371,6 @@ void LCD_write_string(uint8_t * str){
  2c8:	80 81       	ld	r24, Z
  2ca:	81 11       	cpse	r24, r1
  2cc:	f7 cf       	rjmp	.-18     	; 0x2bc <LCD_write_string+0xc>
-		LCD_write_char(str[i]);
-	}
-	
  2ce:	cf 91       	pop	r28
  2d0:	1f 91       	pop	r17
  2d2:	0f 91       	pop	r16
@@ -458,11 +433,7 @@ int main(void)
  316:	81 b3       	in	r24, 0x11	; 17
  318:	80 68       	ori	r24, 0x80	; 128
  31a:	81 bb       	out	0x11, r24	; 17
-	SETBIT(PORTD, 4);  // PD4 high
-	SETBIT(PORTD, 5);  // PD5 high
-	SETBIT(PORTD, 6);  // PD6 high
-	SETBIT(PORTD, 7);  // PD7 high
-	*/
+	
 	LCD_write_command(1);
  31c:	81 e0       	ldi	r24, 0x01	; 1
  31e:	0e 94 b1 00 	call	0x162	; 0x162 <LCD_write_command>
@@ -566,12 +537,6 @@ int main(void)
  3e8:	a7 cf       	rjmp	.-178    	; 0x338 <main+0x62>
 
 000003ea <SPI_init_slave>:
-}
-
-void SPI_write(uint8_t data){
-	SPDR = data;
-	while(READBIT(SPSR,SPIF) == 0);
-}
  3ea:	87 b3       	in	r24, 0x17	; 23
  3ec:	80 64       	ori	r24, 0x40	; 64
  3ee:	87 bb       	out	0x17, r24	; 23
@@ -580,13 +545,9 @@ void SPI_write(uint8_t data){
  3f4:	08 95       	ret
 
 000003f6 <SPI_read>:
-uint8_t SPI_read(void){
-	while(READBIT(SPSR,SPIF) == 0);
  3f6:	77 9b       	sbis	0x0e, 7	; 14
  3f8:	fe cf       	rjmp	.-4      	; 0x3f6 <SPI_read>
-	return SPDR;		
  3fa:	8f b1       	in	r24, 0x0f	; 15
-}
  3fc:	08 95       	ret
 
 000003fe <_exit>:

@@ -500,14 +500,14 @@ END GROUP
  .debug_frame   0x00000090       0x24 main.o
  .debug_frame   0x000000b4       0x64 SPI.o
 
-.debug_str      0x00000000      0x3ef
+.debug_str      0x00000000      0x45a
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_str     0x00000196      0x201 LCD.o
                                 0x244 (size before relaxing)
- .debug_str     0x00000397       0x29 main.o
-                                0x223 (size before relaxing)
- .debug_str     0x000003c0       0x2f SPI.o
+ .debug_str     0x00000397       0x94 main.o
+                                0x234 (size before relaxing)
+ .debug_str     0x0000042b       0x2f SPI.o
                                 0x1c0 (size before relaxing)
 
 .debug_loc      0x00000000      0x5fa
