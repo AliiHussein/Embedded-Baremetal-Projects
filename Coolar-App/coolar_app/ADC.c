@@ -8,7 +8,7 @@
 #include "ADC.h"
 
 void ADC_init(){
-	SETBIT(ADMUX, REFS0); // AVCC with external cap at AREF pin 
+	//SETBIT(ADMUX, REFS0); // AVCC with external cap at AREF pin 
 	
 	SETBIT(ADCSRA, ADEN); // Enable ADC
 	
