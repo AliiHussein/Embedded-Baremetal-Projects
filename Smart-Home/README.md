@@ -6,7 +6,6 @@ Smart home project that controls different rooms lighting, AC and TV unit using 
 * Keypad
 * 2 LCDs
 * LEDs
-* Temp sensor
 
 ## Communication Protocol Used
 * SPI
