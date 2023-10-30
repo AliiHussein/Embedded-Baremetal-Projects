@@ -7,7 +7,8 @@ main.d main.o: .././main.c .././std_macros.h .././Bit_math.h \
  .././MCAL/EXT/EXT_Private.h .././MCAL/EXT/EXT_CFG.h ../std_types.h \
  .././MCAL/GIE/GIE_Interface.h .././MCAL/GIE/GIE_Private.h \
  .././MCAL/GIE/GIE_CFG.h .././MCAL/ADC/ADC_Interface.h \
- .././MCAL/ADC/ADC_CFG.h .././MCAL/ADC/ADC_Private.h
+ .././MCAL/ADC/ADC_CFG.h .././MCAL/ADC/ADC_Private.h \
+ .././MCAL/UART/UART_Interface.h
 
 .././std_macros.h:
 
@@ -56,3 +57,5 @@ main.d main.o: .././main.c .././std_macros.h .././Bit_math.h \
 .././MCAL/ADC/ADC_CFG.h:
 
 .././MCAL/ADC/ADC_Private.h:
+
+.././MCAL/UART/UART_Interface.h:

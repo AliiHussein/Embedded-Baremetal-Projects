@@ -18,32 +18,33 @@
 #include "MCAL/GIE/GIE_Interface.h"
 #include "MCAL/ADC/ADC_Interface.h"
 #include "MCAL/DELAY/DELAY.h"
+#include "MCAL/UART/UART_Interface.h"
 
 
 int main(void)
 {
 	LCD_init();
-	KEYPAD_init();
+	Uart_init();
 	
-	LCD_write_string("ALI");
+	LCD_write_string("Hello Farah!");
 	LCD_write_command(0xc0);
-	LCD_write_string("KP: ");
-	int8 key;
-	uint8 count = 0;
-	while(1){
-		LCD_write_command(0xc4);
-		do{
-			key = KEYPAD_read();
+	
+	
+	uint8 data;
+	while (1)
+	{
+		Uart_Receive(&data);
+		
+		LCD_write_char(data);
+		
+		if(data == 127){
+			LCD_write_command(0x10);
+			LCD_write_command(0x10);
+			LCD_write_string("  ");
+			LCD_write_command(0x10);
+			LCD_write_command(0x10);
+			/*LCD_write_command(1);*/
 		}
-		while(key == -1);
-		
-		LCD_write_char(key);
-		LCD_write_command(0x85);
-		LCD_write_number(count);
-		delay_ms(200);
-		count++;
-		
-		
 		
 	}
 

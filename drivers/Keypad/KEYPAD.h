@@ -15,6 +15,4 @@ void KEYPAD_init(void);
 int8_t KEYPAD_read(void);
 
 
-
-
 #endif /* KEYPAD_H_ */

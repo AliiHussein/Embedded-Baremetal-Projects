@@ -52,7 +52,6 @@ int main(void)
 			
 			if(temp >= min_temp && temp <= max_temp){
 				pwm_value = min_pwm + ((temp-min_temp)*(max_pwm-min_pwm))/(max_temp-min_temp) ;
-				//pwm_value = 50 + ((temp-35)/(50-35)) * (100-50);
 				PWM1_OC1A_duty(pwm_value);
 				SETBIT(PORTB, PB0); // LED ON
 			}
