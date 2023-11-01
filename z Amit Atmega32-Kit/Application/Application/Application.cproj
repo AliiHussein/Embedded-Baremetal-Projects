@@ -223,6 +223,18 @@
     <Compile Include="MCAL\GIE\GIE_Private.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="MCAL\SPI\SPI.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\SPI\SPI_CFG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\SPI\SPI_Interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\SPI\SPI_Private.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="MCAL\UART\UART.c">
       <SubType>compile</SubType>
     </Compile>
@@ -259,6 +271,7 @@
     <Folder Include="MCAL\GIE" />
     <Folder Include="MCAL\ADC" />
     <Folder Include="MCAL\DELAY" />
+    <Folder Include="MCAL\SPI" />
     <Folder Include="MCAL\UART" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />

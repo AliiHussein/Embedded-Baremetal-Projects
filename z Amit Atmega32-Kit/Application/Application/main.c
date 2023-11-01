@@ -19,35 +19,38 @@
 #include "MCAL/ADC/ADC_Interface.h"
 #include "MCAL/DELAY/DELAY.h"
 #include "MCAL/UART/UART_Interface.h"
+#include "MCAL/SPI/SPI_Interface.h"
 
 
 int main(void)
 {
 	LCD_init();
-	Uart_init();
+	SPI_master_init();
 	
-	LCD_write_string("Hello Farah!");
+	LCD_write_string("Sent: ");
+	
 	LCD_write_command(0xc0);
+	LCD_write_string("Rec: ");
 	
 	
-	uint8 data;
+	
+	uint8 data_sent = 22;
+	uint8 data_rec;
 	while (1)
 	{
-		Uart_Receive(&data);
+		//data_rec = SPI_RX_TX(data_sent);
+		SPI_send(data_sent);
+		SPI_recieve(&data_rec);
 		
-		LCD_write_char(data);
+		LCD_write_command(0x86);
+		LCD_write_number(data_sent);
+		LCD_write_command(0xc6);
+		LCD_write_number(data_rec);
 		
-		if(data == 127){
-			LCD_write_command(0x10);
-			LCD_write_command(0x10);
-			LCD_write_string("  ");
-			LCD_write_command(0x10);
-			LCD_write_command(0x10);
-			/*LCD_write_command(1);*/
-		}
+		data_sent++;
+		
+		delay_ms(500);
+		
 		
 	}
-
-	
-
 }
