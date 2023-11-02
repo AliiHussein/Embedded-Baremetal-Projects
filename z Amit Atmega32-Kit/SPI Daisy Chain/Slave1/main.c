@@ -21,34 +21,30 @@
 #include "MCAL/UART/UART_Interface.h"
 #include "MCAL/SPI/SPI_Interface.h"
 
-// MASTER
+// SLAVE 1
 int main(void)
 {
 	LCD_init();
-	LCD_write_string("Master");
-	button_init(portD, 7);
 	
-	SPI_master_init();
+	LCD_write_string("SLave 1");
+	
+	
+	
+	SPI_slave_init();
 
-	uint8 count = 0;
+	uint8 count;
 	while (1)
 	{
 		
-		if(button_read(portD,7) == 0){
-			SPI_send(count);
-			
-			count++;
-			
-			LCD_write_command(0xc0);
-			LCD_write_string("   ");
-			LCD_write_command(0xc0);
-			LCD_write_number(count);
-			
-			
-			
-			delay_ms(300);
-		}
+		SPI_recieve(&count);
 		
+		
+		LCD_write_command(0xc0);
+		LCD_write_string("   ");
+		LCD_write_command(0xc0);
+		LCD_write_number(count);
+		
+		SPI_send(count);
 		
 		
 	}
