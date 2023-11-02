@@ -1,5 +1,5 @@
-# SPI Dasiy Chain
-Daisy Chain proof of concept with 1 master and 2 slaves, where the master is sending a count value to the other slaves.
+# LCD ARABIC LETERS 
+Adding new characters to the LCD using a function and using the new characters on the LCD.
 
 ## Demo
 <p align="center"><img src="gifs/LCD_arabic.jpg"\></p>
